@@ -1,233 +1,28 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
-    <br>
-</p>
-
-Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-rapidly creating small projects.
-
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
-
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-basic.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-basic)
-
-DIRECTORY STRUCTURE
--------------------
-
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
-
-
-
-REQUIREMENTS
-------------
-
-The minimum requirement by this project template that your Web server supports PHP 5.4.0.
-
-
-INSTALLATION
-------------
-
-### Install via Composer
-
-If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
-
-You can then install this project template using the following command:
-
-~~~
-php composer.phar create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
-
-### Install from an Archive File
-
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-Set cookie validation key in `config/web.php` file to some random secret string:
-
-```php
-'request' => [
-    // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-    'cookieValidationKey' => '<secret random string goes here>',
-],
-```
-
-You can then access the application through the following URL:
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-### Install with Docker
-
-Update your vendor packages
-
-    docker-compose run --rm php composer update --prefer-dist
-    
-Run the installation triggers (creating cookie validation code)
-
-    docker-compose run --rm php composer install    
-    
-Start the container
-
-    docker-compose up -d
-    
-You can then access the application through the following URL:
-
-    http://127.0.0.1:8000
-
-**NOTES:** 
-- Minimum required Docker engine version `17.04` for development (see [Performance tuning for volume mounts](https://docs.docker.com/docker-for-mac/osxfs-caching/))
-- The default configuration uses a host-volume in your home directory `.docker-composer` for composer caches
-
-
-CONFIGURATION
--------------
-
-### Database
-
-Edit the file `config/db.php` with real data, for example:
-
-```php
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '1234',
-    'charset' => 'utf8',
-];
-```
-
-**NOTES:**
-- Yii won't create the database for you, this has to be done manually before you can access it.
-- Check and edit the other files in the `config/` directory to customize your application as required.
-- Refer to the README in the `tests` directory for information specific to basic application tests.
-
-
-TESTING
--------
-
-Tests are located in `tests` directory. They are developed with [Codeception PHP Testing Framework](http://codeception.com/).
-By default there are 3 test suites:
-
-- `unit`
-- `functional`
-- `acceptance`
-
-Tests can be executed by running
-
-```
-vendor/bin/codecept run
-```
-
-The command above will execute unit and functional tests. Unit tests are testing the system components, while functional
-tests are for testing user interaction. Acceptance tests are disabled by default as they require additional setup since
-they perform testing in real browser. 
-
-
-### Running  acceptance tests
-
-To execute acceptance tests do the following:  
-
-1. Rename `tests/acceptance.suite.yml.example` to `tests/acceptance.suite.yml` to enable suite configuration
-
-2. Replace `codeception/base` package in `composer.json` with `codeception/codeception` to install full featured
-   version of Codeception
-
-3. Update dependencies with Composer 
-
-    ```
-    composer update  
-    ```
-
-4. Download [Selenium Server](http://www.seleniumhq.org/download/) and launch it:
-
-    ```
-    java -jar ~/selenium-server-standalone-x.xx.x.jar
-    ```
-
-    In case of using Selenium Server 3.0 with Firefox browser since v48 or Google Chrome since v53 you must download [GeckoDriver](https://github.com/mozilla/geckodriver/releases) or [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) and launch Selenium with it:
-
-    ```
-    # for Firefox
-    java -jar -Dwebdriver.gecko.driver=~/geckodriver ~/selenium-server-standalone-3.xx.x.jar
-    
-    # for Google Chrome
-    java -jar -Dwebdriver.chrome.driver=~/chromedriver ~/selenium-server-standalone-3.xx.x.jar
-    ``` 
-    
-    As an alternative way you can use already configured Docker container with older versions of Selenium and Firefox:
-    
-    ```
-    docker run --net=host selenium/standalone-firefox:2.53.0
-    ```
-
-5. (Optional) Create `yii2_basic_tests` database and update it by applying migrations if you have them.
-
-   ```
-   tests/bin/yii migrate
-   ```
-
-   The database configuration can be found at `config/test_db.php`.
-
-
-6. Start web server:
-
-    ```
-    tests/bin/yii serve
-    ```
-
-7. Now you can run all available tests
-
-   ```
-   # run all available tests
-   vendor/bin/codecept run
-
-   # run acceptance tests
-   vendor/bin/codecept run acceptance
-
-   # run only unit and functional tests
-   vendor/bin/codecept run unit,functional
-   ```
-
-### Code coverage support
-
-By default, code coverage is disabled in `codeception.yml` configuration file, you should uncomment needed rows to be able
-to collect code coverage. You can run your tests and collect coverage with the following command:
-
-```
-#collect coverage for all tests
-vendor/bin/codecept run -- --coverage-html --coverage-xml
-
-#collect coverage only for unit tests
-vendor/bin/codecept run unit -- --coverage-html --coverage-xml
-
-#collect coverage for unit and functional tests
-vendor/bin/codecept run functional,unit -- --coverage-html --coverage-xml
-```
-
-You can see code coverage output under the `tests/_output` directory.
+Задача: создание новостного  сайта. 
+Уточнения:
+1)	Тексты, контент берём из Lorem Ipsum. Новостей и страниц должны быть несколько десятков.
+2)	Дизайн некритичен. Достаточно шаблона бутстрапа, или на ваше усмотрение.
+
+Задания.
+1.	На главной странице – категории новостей, под каждой из них – список из 5 последних новостей этой категории(без контента, только заголовок новости).
+2.	Реализовать слайдер – там крутятся 3-4 последние новости с фото(картинкой).
+
+3.	Жмем категорию – переходим в неё, в ней список новостей, выводится по 5 на страницу (заголовки, без контента), под списком – пагинация -  не менее 5 кнопок перехода. Отображается первая и последняя. Между ними – кнопка с троеточием, при нажатии на которую на её месте плавно подгружается табличка с номерами других страниц, среди которых можно выбрать нужную страницу .
+4.	При переходе по ссылке на новость – страничка с новостью. Предусмотреть наличие фото/картинок в новости. Также  нужно разместить блок с информацией, сколько людей ещё читают этот контент прямо сейчас – а значит, цифры должны постоянно меняться. Например, каждые 3 сек обновляется кол-во читающих новость, а под ней – общее кол-во людей, которые прочитали эту новость за весь период. Количество читающих «сейчас» - смоделировать рандомно(от 0 до 5 чел), общее число прочитавших – реально плюсуется из «читающих сейчас».
+5.	Под каждой новостью – небольшой список тегов, которые соответствуют данной новости. Пользователь, нажимая на тег может получить весь список новостей с таким тегом.
+6.	В шапке сделать окно поиска – если пользователь начинает вводить какое-либо слово из имеющихся тегов – оно должно подставляться в строку(или появляться в выпадающем списке если их несколько) – пример –пользователь начинает вводить «финан» - появляется список «финансовые новости», «финансовые прогнозы», «экономика и финансы»… Пользователь выбирает нужный вариант, и получает список новостей с таким тегом. Принцип вывода - по 5 на страницу, под списком – пагинация.
+7.	У новости может быть категория «аналитика» - доступ к полному тексту такой новости должен быть только у авторизованного пользователя. Для обычных, незарегистрированных(или неавторизованных) – только первых 5 предложений статьи. Для таких новостей ещё нужен дополнительный раздел «аналитика», но при этом новость будет и в своей обычной категории тоже. Например есть раздел «экономика» - там могут быть и обычные новости, и аналитические статьи. А «аналитика» - только аналитика, из разных категорий, с закрытым контентом.
+8.	Каждую новость авторизованный пользователь может комментировать. Комментарий можно «плюсовать» и «минусовать». На главной странице – вывести список топ-5 комментаторов (по количеству комментов) – при нажатии на любого из этих пользователей – вывод всех их комментариев, принцип вывода тот же что и для новостей - по 5 на страницу, под списком – пагинация. Также на главной выводить топ-3 активных темы – это значит что за последние сутки там оставили больше всего комментариев.
+9.	Под каждой новостью – в блоке комментариев – сначала выводить самые «заплюсованные» комментарии, после них – все остальные. Комментариям можно отвечать, тогда эти ответы должны визуально быть связаны, например выравниванием. Комментарий пользователь может изменить только в течение 1 минуты после его создания.
+10.	Реализовать фильтр поиска новостей – параметры – дата (за какой период), теги новостей, категории. Выбор должен быть множественным – выбрать можно и дату, и несколько категорий и несколько тегов.
+11.	Для шапки сайта сделать меню, одним из пунктов которого должен быть выпадающий список, внутри которого – одним из пунктов – ещё один выпадающий список.
+12.	Через 15 сек после открытия сайта, на любой странице – где-бы ни находился посетитель – должно всплыть окно, с предложением подписаться на новостную рассылку – email и имя-фамилия.
+13.	При попытке закрытия сайта – должно появиться окно с вопросом-подтверждением «Вы действительно хотите покинуть сайт?». 
+14.	По бокам сайта (контент с новостями – посредине) должен быть блок рекламы – по 4 объявления с каждой стороны – название товара(услуги), цена, фирма(сайт)-продавец. При наведении мышкой на объявление – цена на объявлении должна уменьшиться на 10%, шрифт цены должен стать чуть крупнее и изменить цвет,  и возле рекламы должно плавно появиться объявление –«Купон на скидку  - ..случайный набор символов.. – примените и получите скидку 10%. 
+15.	Добавить категорию «Политика» - в ней комментарии могут появляться только после одобрения модератора. 
+Реализовать админку
+16.	Добавление категорий, новостей. Для новости – добавлять теги, картинки.
+17.	Редактирование, добавление комментариев. Должен быть отдельный блок для ожидающих одобрения комментариев (категория Политика) где комментарий можно сделать видимым (например чекбокс). Все комментарии можно редактировать.
+18.	Добавление рекламных блоков на сайт.
+19.	Редактирование меню. Предусмотреть возможность вложенных меню/подменю – тогда в верстке они будут выпадающими списками.
+20.	Реализовать изменение фона сайта и шапки из админки.
