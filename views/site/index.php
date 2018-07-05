@@ -79,7 +79,7 @@ use yii\helpers\Url;
                 <?php endforeach; ?>
             <?php endforeach; ?>
             </div>
-          <!-- <div class="col-md-4" data-sticky_column>
+          <!--   <div class="col-md-4" data-sticky_column>
                 <div class="primary-sidebar">
 
                     <aside class="widget">
@@ -125,8 +125,8 @@ use yii\helpers\Url;
                         <?php endforeach; ?>
                         </ul>
                     </aside>
-                </div> -->
-            </div>
+                </div>
+            </div> -->
         </div>
     </div>
 </div>

@@ -20,7 +20,6 @@ class PublicAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'public/css/subscribe-better.css',
         'public/css/bootstrap.min.css',
         'public/css/font-awesome.min.css',
         'public/css/animate.min.css',
@@ -29,14 +28,15 @@ class PublicAsset extends AssetBundle
         'public/css/owl.transitions.css',
         'public/css/style.css',
         'public/css/responsive.css',
+        'public/css/subscribe-better.css',
     ];
     public $js = [
-        "https://code.jquery.com/jquery-2.2.1.js",
+        "https://code.jquery.com/jquery-1.12.4.js",
         "public/js/jquery.subscribe-better.js",
-        "public/js/scripts.js",
         "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
         //"public/js/menu.js",
-        "public/js/owl.carousel.min.js",
+        "public/js/scripts.js",
+        //"public/js/owl.carousel.min.js",
     ];
     public $depends = [
         'yii\web\YiiAsset',

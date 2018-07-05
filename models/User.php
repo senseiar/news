@@ -78,6 +78,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return User::find()->where(['email'=>$email])->one();
     }
+    
     public function validatePassword($password)
     {
         return ($this->password == $password) ? true : false;

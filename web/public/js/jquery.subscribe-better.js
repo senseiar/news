@@ -150,7 +150,7 @@
           break;
         case "onload":
   
-          $(window).on(function(){
+          $(document).ready(function(){
             el.openWindow();
             if(settings.autoClose == true) {
               el.scrollDetection("scrollStart", function() {

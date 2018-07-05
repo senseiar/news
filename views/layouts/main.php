@@ -47,7 +47,7 @@ PublicAsset::register($this);
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav text-uppercase">
-                    <li><a data-toggle="dropdown" class="dropdown-toggle" href="/">Home</a></li>
+                    <li><a class="dropdown-toggle" href="/">Home</a></li>
                     <li><a  data-toggle="dropdown" class="dropdown-toggle">Categories</a>
                         <ul class="dropdown-menu">
                             <li><a href="/site/category?id=1">First Category</a></li>
@@ -56,12 +56,12 @@ PublicAsset::register($this);
                             <li><a href="#">Interesting posts</a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a href="/site/view?id=8" class="dropdown-item">Lorem Ipsum</a></li>
-                                    <li><a href="/view?id=11" class="dropdown-item">Lorem Ipsum</a></li>
+                                    <li><a href="/site/view?id=11" class="dropdown-item">Lorem Ipsum</a></li>
                                 </ul>     
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#">Polytics</a></li>
+                    <li><a href="/site/view?id=9">Lorem Dolor</a></li>
                 </ul>
 
                 <div class="i_con">

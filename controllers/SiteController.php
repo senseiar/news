@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\CommentForm;
+use app\models\Tag;
 
 class SiteController extends Controller
 {
@@ -120,8 +121,13 @@ class SiteController extends Controller
         $commentForm = new CommentForm();
 
         $article->viewedCounter();
+
+        $tags = $article->getTags()->all();
+
+        // $tags = Tag::getArticles()->title;
         
         return $this->render('single', [
+            'tags' => $tags,
             'article'=>$article,
             'comments' => $comments,
             'commentForm' => $commentForm,
@@ -135,6 +141,22 @@ class SiteController extends Controller
         return $this->render('category', [
             'articles' => $data['articles'],
             'pagination' => $data['pagination'],
+        ]);
+    }
+
+    public function actionTags($id)
+    {
+        //$articles = Articles::find()->all();
+
+        //$art = Article::find()->all();
+
+        $art = Tag::findOne($id);
+
+        
+        $articles = $art->getArticles()->all();
+        
+        return $this->render('tags', [
+            'articles' => $articles,
         ]);
     }
 

@@ -12,7 +12,7 @@ use yii\helpers\Url;
             <div class="col-md-8">
                 <article class="post">
                     <div class="post-thumb">
-                        <img src="<?= $article->getImage();?>" alt="">
+                        <a href="blog.html"><img src="<?= $article->getImage();?>" alt=""></a>
                     </div>
                     <div class="post-content">
                         <header class="entry-header text-center text-uppercase">
@@ -25,15 +25,17 @@ use yii\helpers\Url;
                            <?= $article->content ?>
                         </div>
                         <!-- tags -->
+                        
                         <div class="decoration">
-                            <a href="#" class="btn btn-default">Decoration</a>
-                            <a href="#" class="btn btn-default">Decoration</a>
+                            <?php foreach ($tags as $tag): ?>
+                            <a href="<?= Url::toRoute(['site/tags', 'id'=>$tag->id]) ?>" class="btn btn-default"><?= $tag->title; ?></a>
+                            <?php endforeach; ?>
                         </div>
                         <!-- // -->
 
                         <div class="social-share">
 							<span
-                                class="social-share-title pull-left text-capitalize">By <?= $article->author->name?> On <?= $article->getDate(); ?></span>
+                                class="social-share-title pull-left text-capitalize">By <?= $article->author->name; ?> On <?= $article->getDate(); ?></span>
                             <ul class="text-center pull-right">
                                 <li><a class="s-facebook" href="#"><i class="fa fa-eye"></i></a></li><?= (int) $article->viewed ?>
                             </ul>
@@ -46,7 +48,8 @@ use yii\helpers\Url;
                  'comments'=>$comments,
                  'commentForm'=>$commentForm,
                 ])?>
-            </div>
+
+
         </div>
     </div>
 </div>
